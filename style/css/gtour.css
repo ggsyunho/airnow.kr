@@ -1,0 +1,808 @@
+body {
+    margin: 0;
+}
+
+div.Header {
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid #dadce0;
+    display: flex;
+    height: 64px;
+    justify-content: space-between;
+    left: 0;
+    padding: 0 20px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 5;
+}
+
+div.Logo {
+    top: 20px;
+    left: 20px;
+}
+
+div.Logo img {
+    height: 50px;
+    width: auto;
+}
+
+div.ChangeLanguage {
+    top: 20px;
+    right: 20px;
+}
+
+a.test {
+    margin: 0 30px 0 0;
+}
+
+a.KOR {
+    margin: 0 30px 0 0;
+    color: #2e486c;
+    font-weight: bold;
+}
+
+.mainText {
+    font-size: 1.35vw;
+}
+
+.mainText1 {
+    font-size: 17pt;
+}
+
+#mapid {
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+.circle {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    border-style: solid;
+    font-size: 13px;
+    font-weight: bold;
+    border-color: #7E7E7E;
+}
+.circle.pm25blue {
+    background: rgba(0, 165, 227, 0.4);
+    color: black;
+    border-color: #135FB7;
+}
+.circle.pm25green {
+    background: rgba(0, 157, 74, 0.3);
+    color: black;
+    border-color: #357616;
+}
+.circle.pm25yellow {
+    background: rgba(242, 242, 23, 0.4);
+    color: black;
+    border-color: #C1A313;
+}
+.circle.pm25red {
+    background: rgba(216, 40, 40, 0.7);
+    color: black;
+    border-color: #9E1D1D;
+}
+.circle.pm25black {
+    background: rgba(108, 108, 110, 0.4);
+    color: black;
+    border-color: black;
+}
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+
+    /* 숨기기 */
+    z-index: -1;
+    opacity: 0;
+}
+
+.show {
+    opacity: 1;
+    z-index: 1000;
+    transition: all 0.5s;
+}
+
+.window {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#popup {
+    position: absolute;
+    top: 34.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*background: url("../../../gtour/gtourIcon/창.png");*/
+    background-size: 350px 680px;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 20px 20px 20px 20px / 20px 20px 20px 20px;
+
+    /* 임시 지정 */
+    width: 357px;
+    height: 680px;
+
+    /* 초기에 약간 아래에 배치 */
+    transform: translate(-50%, -40%);
+
+}
+
+#popup1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+    text-align: center;
+
+    /* 임시 지정 */
+    width: auto;
+    height: auto;
+
+    /* 초기에 약간 아래에 배치 */
+    transform: translate(-50%, -40%);
+
+    padding: 1px;
+    border-radius: 12px;
+}
+
+a#close {
+    top: 5%;
+    right: 0%;
+    font-size: 14px;
+	padding: 0 14px 0 0;
+	border: none;
+	width: 0px;
+	height: 11px;
+	background: transparent;
+    cursor:pointer;
+    position: absolute;
+}
+
+a#close1 {
+	top: 0;
+	right: 0;
+	padding: 4px 10px 0 0;
+    margin: 0 0 0 275px;
+	border: none;
+	text-align: center;
+	width: 18px;
+	height: 14px;
+	font: 16px/14px Tahoma, Verdana, sans-serif;
+	color: #c3c3c3;
+	text-decoration: none;
+	font-weight: bold;
+	background: transparent;
+    cursor:pointer;
+    cursor:hand;
+}
+
+a#global {
+    top: 39%;
+    right: 0.83%;
+    font-size: 14px;
+	padding: 14px 14px;
+	border: none;
+	width: 0px;
+	height: 11px;
+	background: transparent;
+    cursor:pointer;
+    position: absolute;
+}
+
+.TAM_Time {
+    bottom: 7%;
+    left: -3%;
+    margin: 0 0 0 37px;
+    font-Size: 7.5px;
+    color: rgb(96, 96, 96);
+    position: absolute;
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 500;
+}
+
+.TAM_ID {
+    bottom: 7%;
+    left: 56.5%;
+    font-Size: 7.5px;
+    color: rgb(35, 24, 21);
+    position: absolute;
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 500;
+}
+
+.popupHead {
+    width: 320px;
+    height: 60.97px;
+    margin: 17px 18px 0 18px;
+    background: url("../../gtourIcon/popupHead.png?ver=5");
+    background-size: 335px 60.97px;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.popupBody {
+    width: 357px;
+    height: 570px;
+    overflow: auto;
+    margin: 5px 0px 25px 0px;
+}
+
+.popupBody::-webkit-scrollbar{
+    width: 3px;
+}
+
+/* 스크롤바 막대 설정*/
+.popupBody::-webkit-scrollbar-thumb{
+    height: 17%;
+    background-color: gray;
+    /* 스크롤바 둥글게 설정    */
+    border-radius: 10px;    
+}
+
+/* 스크롤바 뒷 배경 설정*/
+.popupBody::-webkit-scrollbar-track{
+    background-color: rgba(0,0,0,0);
+}
+
+.popupBodyPng {
+    width: 350px;
+    height: 1072px;
+    background: url("../../gtourIcon/popupBody.png?ver=5");
+    background-size: 354px 1071.09px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.show .popup {
+    transform: translate(-50%, -50%);
+    transition: all 0.5s;
+}
+
+.popupTitle {
+    margin: 5px 0 0 0;
+}
+
+.HL1 {
+    width: 360px;
+    height: 10px;
+    background-color: white;
+}
+
+.HL2 {
+    width: 350px;
+    height: 0.1px;
+    float: left;
+    margin: 50px 0;
+}
+
+.grayHL {
+    border: 0.1px solid gray;
+    width: 350px;
+    height: 0.1px;
+    float: left;
+    margin: 10px 0;
+}
+
+.grayVL {
+    border: 0.1px solid gray;
+    width: 0.1px;
+    height: 35px;
+    float: left;
+}
+
+.grayVL1 {
+    border: 0.1px solid gray;
+    width: 0.1px;
+    height: 110px;
+    float: left;
+}
+
+.tourAddress {
+    text-align: center;
+    margin: 5px 5px 5px 5px;
+    padding: 5px 0 0 0;
+    height: 39px;
+}
+
+.tourAddress #tourSite{
+    margin : 0 0 0 0;
+    font-Family: 'KoPubWorldDotum';
+    font-weight: normal;
+    display: inline;
+}
+
+.tourAddress #tourAddress{
+    font-Size: 0.6em;
+    margin: 0 0 0 0;
+    color: #727171;
+    font-Family: 'KoPubWorldDotum';
+    font-weight: lighter;
+}
+
+#mainStatus {
+    width: 354px;
+    height: 211.93px;
+    background-size: 354px;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    margin: 0 0 7px 0;
+}
+
+.PMTitle, .TRHTitle, .PMStatus, .TRHStatus, .TACTmpTitle, .TACRHTitle, .GPSTitle{
+    width: 163px;
+    text-align: center;
+    margin: 5px 5px 5px 5px;
+    float: left;
+}
+
+.PMTable, .TRHTable {
+    width: 163px;
+}
+
+#PMNumber {
+    top: 39%;
+    right: 28%;
+    font-size: 3.5rem;
+    font-weight: bold;
+    letter-spacing: -4px;
+    color: white;
+    position: absolute;
+    transform: translate(0, -50%);
+    text-align: right;
+}
+
+.ambTRH {
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.trendTitle {
+    width: 350px;
+    float: left;
+    padding: 10px 0 0 0;
+}
+
+#AQINumber {
+    top: 31.5%;
+    right: 11%;
+    font-size: 0.8rem;
+    color: white;
+    position: absolute;
+    transform: translate(0, -50%);
+    text-align: right;
+}
+
+#tempIcon {
+    top: 80%;
+    left: 9%;
+    height: 20px;
+    width: 9.08px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-size: 9.08px 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#hmdIcon {
+    top: 80%;
+    left: 39%;
+    height: 20px;
+    width: 13.28px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-size: 13.28px 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#pressIcon {
+    top: 80%;
+    left: 70%;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-size: 20px 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#ambTmp {
+    top: 81.5%;
+    right: 80%;
+    position: absolute;
+    transform: translate(0, -50%);
+    text-align: right;
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 500;
+    font-size: 14px
+}
+
+#ambHmd {
+    top: 81.5%;
+    right: 48.5%;
+    position: absolute;
+    transform: translate(0, -50%);
+    text-align: right;
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 500;
+    font-size: 14px
+}
+
+#ambPress {
+    top: 81.5%;
+    right: 16%;
+    position: absolute;
+    transform: translate(0, -50%);
+    text-align: right;
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 500;
+    font-size: 14px
+}
+
+.btn-primary {
+    margin: 20px 119px 0px 119px;
+}
+
+#dataProvider {
+    margin: 38px 0 0 100px;
+    width: 210px;
+    height: 20px;
+    font-size: 12px;
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 505;
+}
+
+#scroll-modal-top {
+    margin: 10px 0px 10px 280px;
+}
+
+.trendGraph {
+    width: 350px;
+    height: 190px;
+}
+
+#trendText {
+    width: 354px;
+    height: 25px;
+    text-align: center;
+    margin: 0px 0 5px 0;
+    background-color: rgb(238, 238, 238);
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 150;
+}
+
+#errorText {
+    width: 350px;
+    height: 20px;
+    margin: 15.5px 0;
+    text-align: center;
+    animation: blink-effect 1s step-end infinite;
+    color: red;
+    font-Family: 'KoPubWorldDotum';
+}
+
+@keyframes blink-effect { 50% { opacity: 0; } }
+
+.detailTable {
+    width: 350px;
+    height: 468px;
+    position: relative;
+}
+
+#PM1Num {
+    top: 20%;
+    left: 19.3%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 600;
+    font-size: 13px;
+}
+
+#PM25Num {
+    top: 20%;
+    left: 38.4%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 600;
+    font-size: 13px;
+}
+#PM40Num {
+    top: 20%;
+    left: 60%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 600;
+    font-size: 13px;
+}
+#PM10Num {
+    top: 20%;
+    left: 80.8%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 600;
+    font-size: 13px;
+}
+
+#ambTmpNum {
+    top: 41.4%;
+    right: 75.5%;
+    position: absolute;
+    transform: translate(0, -50%);
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 600;
+    font-size: 13px;
+}
+
+#ambHmdNum {
+    top: 41.4%;
+    right: 47.8%;
+    position: absolute;
+    transform: translate(0, -50%);
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 600;
+    font-size: 13px;
+}
+
+#ambPressNum {
+    top: 41.4%;
+    right: 24.5%;
+    position: absolute;
+    transform: translate(0, -50%);
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 600;
+    font-size: 13px;
+}
+
+#TACTmpNum {
+    top: 62.3%;
+    right: 71.5%;
+    position: absolute;
+    transform: translate(0, -50%);
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 600;
+    font-size: 13px;
+}
+
+#TACHmdNum {
+    top: 62.3%;
+    right: 28.5%;
+    position: absolute;
+    transform: translate(0, -50%);
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 600;
+    font-size: 13px;
+}
+
+#TAMLat {
+    top: 84.5%;
+    right: 61.3%;
+    position: absolute;
+    transform: translate(0, -50%);
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 600;
+    font-size: 13px;
+}
+
+#TAMLon {
+    top: 84.5%;
+    right: 23.5%;
+    position: absolute;
+    transform: translate(0, -50%);
+    font-Family: 'KoPubWorldDotum';
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.divBox {
+    width: 300px;
+    margin: 10px 20px;
+    float: left;
+}
+
+.grayDiv {
+    width: 300px;
+    height: 30px;
+    background-color: gray;
+    border-radius: 10px 10px 10px 10px / 10px 10px 10px 10px;
+    color: black;
+    text-align: center;
+    display:table-cell;
+    vertical-align: middle;
+}
+
+.PMDetailTable {
+    width: 300px;
+}
+
+.PMIcon {
+    width: 70px;
+    margin: 10px 10px;
+}
+
+.PMNum {
+    font-size: 24px;
+}
+
+.tmpTitle, .hmdTitle, .pressTitle {
+    width: 103px;
+    text-align: center;
+    margin: 5px 5px 5px 5px;
+    float: left;
+}
+
+#TAMTitle {
+    font-Size: 16pt;
+}
+
+.TAM_ID_Site {
+    font-size: 12px;
+}
+
+.unit {
+    display: inline;
+    margin: 0 0 0 2px;
+}
+
+#inputCode {
+    width: 80px;
+}
+
+.gtestHome {
+    display: block;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+}
+
+.unit {
+    display: inline;
+    margin: 0 0 0 2px;
+}
+
+table.detailTable1 {
+    border-collapse: collapse;
+    margin: 0 20px 20px 20px;
+    font-size: 12px;
+}
+table.detailTable1 td, table.detailTable1 th {
+    border: 1px solid black;
+    padding: 5px 5px 5px 5px;
+    font-weight: normal;
+}
+table.detailTable1 th {
+    background-color: #EDEDED;
+    color: #333333;
+}
+table.detailTable1 tr:first-child th,
+table.detailTable1 tr:first-child td {
+    border-top: 1px solid #A5A5A5;
+}
+table.detailTable1 tr:last-child th,
+table.detailTable1 tr:nth-last-child(2) th:first-child,
+table.detailTable1 tr:last-child td {
+    border-bottom: 1px solid #A5A5A5;
+}
+table.detailTable1 tr td:first-child,
+table.detailTable1 tr th:first-child {
+    border-left: 0;
+}
+table.detailTable1 tr td:last-child,
+table.detailTable1 tr th:last-child {
+    border-right: 0;
+}
+
+.popupTitle {
+    margin: 5px 0 0 0;
+}
+#TAMTitle {
+    font-Size: 16pt;
+}
+.TAM_ID_Site {
+    font-size: 12px;
+}
+
+/* PC , 테블릿 가로 (해상도 768px ~ 1023px)*/
+@media all and (min-width:768px) and (max-width:1023px) {}
+    #smallLogo {
+        display: none;
+    }
+    #largeLogo {
+        display: block;
+    }
+    .mainText {
+        display: block;
+    }
+
+    .mainText1 {
+        display: none;
+    }
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width:768px) and (max-width:1023px) {
+    div.SearchBox {
+        width: 70%;
+    }
+    #smallLogo {
+        display: block;
+    }
+    #largeLogo {
+        display: none;
+    }
+    .mainText {
+        display: none;
+    }
+
+    .mainText1 {
+        display: block;
+    }
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width:480px) and (max-width:767px) {
+    #smallLogo {
+        display: block;
+    }
+    #largeLogo {
+        display: none;
+    }
+
+    .mainText {
+        display: none;
+    }
+
+    .mainText1 {
+        display: block;
+    }
+}
+
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media all and (max-width:479px) {
+    a.KOR {
+        margin: 0 10px 0 0;
+    }
+
+    a.test {
+        margin: 0 10px 0 0;
+    }
+
+    .mainText {
+        display: none;
+    }
+
+    .mainText1 {
+        display: block;
+    }
+
+    #smallLogo {
+        display: block;
+    }
+    #largeLogo {
+        display: none;
+    }
+}
