@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <title>airnow</title>
+    <script>
+        var type = navigator.appName;
+        if (type == 'Netscape')
+            var lang = navigator.language;
+        else var lang = navigator.userLanguage;
+        var timestamp = new Date().getTime();
+        if (lang == "ko-KR" || lang == "ko")
+            document.write('<link rel="stylesheet" id="css" href="style/css/gtour.css?ver=' + timestamp + '">');
+        else document.write('<link rel="stylesheet" id="css" href="style/css/gtourEN.css?ver=' + timestamp + '">');
+        document.write('<link rel="shortcut icon" href="ggsLogo/GGSLOGOTransparency_202109091921.ico?ver=' + timestamp + '">');
+    </script>
+    <!-- Bootstrap added -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <!-- CSS 코드 분리 (Jin) -->
+    <link href="https://webfontworld.github.io/kopus/KoPubWorldDotum.css" rel="stylesheet">
+    <link href="https://webfontworld.github.io/kopus/KoPubWorldBatang.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="gtestHome" id="gtestHome">
+    <div class="Header">
+        <div class="Logo">
+            <a href="">
+                <img id='smallLogo' src="ggsLogo/GonggamSensors_Logo(20220110).png?ver=1">
+                <img id='largeLogo' src="ggsLogo/GonggamSensors_Logo(20220111).png?ver=1">
+            </a>
+        </div>
+        <div class="mainText">
+            Real-time Outdoor fine particulate matter(PM2.5) data across Korea 
+        </div>
+        <div class="mainText1">
+            Air Now & Here
+        </div>
+        <div class="ChangeLanguage">
+            <a class="KOR"></a>
+            <!--<a class="test">gtest1</a>-->
+            <a class="test"></a>
+            <a class="test"></a>
+        </div>
+    </div>
+    <div class="background">
+        <div class="window">
+            <div id="popup">
+                <div class="popupHead">
+                    <a id='close'></a>
+                    <div class='TAM_Time'><span id='TAM_Time'></span></div>
+                    <div class='TAM_ID'><span>TAM</span><span id='TAM_ID'></span></div>
+                    <a id='global' value='' onclick=''></a>
+                </div>
+                <div class="popupBody">
+                    <div class="popupBodyPng">
+                        <div class="tourAddress">
+                            <p id="tourSite"></p>
+                            <p id="tourAddress"></p>
+                        </div>
+                        <div id="mainStatus">
+                            <div id="PMNumber"></div>
+                            <div id="AQINumber"></div>
+                            <div id="tempIcon"></div>
+                            <div id="ambTmp"></div>
+                            <div id="hmdIcon"></div>
+                            <div id="ambHmd"></div>
+                            <div id="pressIcon"></div>
+                            <div id="ambPress"></div>
+                        </div>
+                        <div id="dataProvider">abcd</div>
+                        <button class="btn btn-primary" id="tourChangeBtn">사이트 변경</button>
+                        <div class="trendGraph" id="trendGraph"></div>
+                        <div id="trendText"></div>
+                        <div id="errorText"></div>
+                        <div class="detailTable">
+                            <div id="PM1Num"></div>
+                            <div id="PM25Num"></div>
+                            <div id="PM40Num"></div>
+                            <div id="PM10Num"></div>
+                            <div id="ambTmpNum"></div>
+                            <div id="ambHmdNum"></div>
+                            <div id="ambPressNum"></div>
+                            <div id="TACTmpNum"></div>
+                            <div id="TACHmdNum"></div>
+                            <div id="TAMLat"></div>
+                            <div id="TAMLon"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="popup1">
+                <div class='popupTitle'>
+                <a id='close1'>×</a><br>
+                <strong class=TAM_ID_Site><span id='TAMTitle'>TAM</span><span id='TAM_ID'></span> (<span id='TAM_Site'></span>)</strong>
+                <p id='errorText1'></p>
+                </div>
+                <table class='detailTable1'>
+                    <tbody>
+                        <tr>
+                            <th rowspan="4">PM Sensor</th>
+                            <th>PM1.0</th>
+                            <td><p id='PM_Sensor_1' style='display:inline'></p><p class='unit'>㎍/m³</p></td>
+                        </tr>
+                        <tr>
+                            <th>PM2.5</th>
+                            <td><p id='PM_Sensor_25' style='display:inline'></p><p class='unit'>㎍/m³</p></td>
+                        </tr>
+                        <tr>
+                            <th>PM4.0</th>
+                            <td><p id='PM_Sensor_40' style='display:inline'></p><p class='unit'>㎍/m³</p></td>
+                        </tr>
+                        <tr>
+                            <th>PM10</th>
+                            <td><p id='PM_Sensor_10' style='display:inline'></p><p class='unit'>㎍/m³</p></td>
+                        </tr>
+                        <tr>
+                            <th rowspan="3">Ambient T/RH Sensor</th>
+                            <th>Tmp.</th>
+                            <td><p id='Ambient_T' style='display:inline'></p><p class='unit'>℃</p></td>
+                        </tr>
+                        <tr>
+                            <th>Hmd.</th>
+                            <td><p id='Ambient_H' style='display:inline'></p><p class='unit'>%RH</p></td>
+                        </tr>
+                        <tr>
+                            <th>Pres.</th>
+                            <td><p id='Press' style='display:inline'></p><p class='unit'>hPa</p></td>
+                        </tr>
+                        <tr>
+                            <th rowspan="2">Tiny Aerosol Conditioner</th>
+                            <th>Tmp.</th>
+                            <td><p id='TAC_T' style='display:inline'></p><p class='unit'>℃</p></td>
+                        </tr>
+                        <tr>
+                            <th>Hmd.</th>
+                            <td><p id='TAC_H' style='display:inline'></p><p class='unit'>%RH</p></td>
+                        </tr>
+                        <tr>
+                            <th rowspan="2">GPS</th>
+                            <th>Lat.</th>
+                            <td><p id='GPS_Lat' style='display:inline'></p><p class='unit'>˚</p></td>
+                        </tr>
+                        <tr>
+                            <th>Lon.</th>
+                            <td><p id='GPS_Lon' style='display:inline'></p><p class='unit'>˚</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="mapid"></div>
+    </div>
+    <!--<button id="Assessment_button" onclick="sendFunc1()" class="btn btn-light">Assessment</button>-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster-src.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/textfit/2.4.0/textFit.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/leaflet-knn@0.1.0/leaflet-knn.min.js"></script>
+    <script>
+        var timestamp = new Date().getTime();
+        document.write('<script src="js/gtour.js?ver=' + timestamp + '" /><\/script>');
+    </script>
+</body>
+
+</html>
